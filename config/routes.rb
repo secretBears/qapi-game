@@ -3,9 +3,22 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resources :users
+  #resources :users
 
-  root 'users#index'
+  #root 'users#index'
+
+  namespace :api, defaults: {format: :json} do
+
+    devise_scope :user do
+      match '/sessions' => 'sessions#create', :via => :post
+      match '/sessions' => 'sessions#destroy', :via => :delete
+    end
+
+    resources :users#, only: [:create]
+    #match '/users' => 'users#show', :via => :get
+    #match '/users' => 'users#update', :via => :put
+    #match '/users' => 'users#destroy', :via => :delete
+  end
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
