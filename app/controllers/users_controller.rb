@@ -1,49 +1,31 @@
-class UsersController < ApplicationController
-  #before_action :authenticate_user!
-  before_action :set_user, only: [:edit, :update, :destroy]
+class UsersController < BaseController
+  before_filter :authenticate_user!, :except => [:create, :index]
+  before_action :set_user, only: [:show]
 
   def index
-    @users = User.all
+    render :json => {:info => "Current User", :user => current_user}, :status => 200
   end
 
-  def new
-    @user = User.new
-  end
-
-  def edit
+  def show
+    render :json => {:info => "Show User", :user => @user}, :status => 200
   end
 
   def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html redirect_to edit_user_path(@user), notice: 'User was successfully created.'
-      else
-        format.html { render action: 'new' }
-      end
+    @user = User.create(user_params)
+    if @user.valid?
+      sign_in(@user)
+      respond_with @user, :location => users_path
+    else
+      respond_with @user.errors, :location => users_path
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html redirect_to user_path(@user), notice: 'User was successfully updated.'
-      else
-        format.html { render action: 'edit' }
-      end
-    end
+    respond_with :api, User.update(current_user.id, user_params)
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully removed.' }
-    end
+    respond_with :api, User.find(current_user.id).destroy
   end
 
   private
@@ -53,6 +35,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :type)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end

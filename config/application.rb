@@ -27,9 +27,20 @@ module QapiGame
       DeviseController.respond_to :html, :json
     end
 
-    config.action_dispatch.default_headers = {
-        'Access-Control-Allow-Origin' => '*',
-        'Access-Control-Request-Method' => '*'
-    }
+    #config.action_dispatch.default_headers = {
+    #    'Access-Control-Allow-Origin' => '*',
+    #    'Access-Control-Allow-Methods' => %w{GET POST PUT DELETE OPTIONS}.join(","),
+    #    'Access-Control-Request-Method' => '*',
+    #    'Access-Control-Allow-Headers' => %w{Origin Accept Content-Type X-Requested-With X-CSRF-Token}.join(",")
+    #}
+
+    config.middleware.insert_before Warden::Manager, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+        :headers => :any,
+        :methods => [:get, :post, :put, :delete, :options]
+      end
+    end
   end
 end
