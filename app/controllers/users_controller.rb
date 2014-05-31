@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def index
-    render :json => {:info => "Current User", :user => current_user}, :status => 200
+    #render :json => :user => current_user, :status => 200
+    render 'index'
   end
 
   def show
@@ -14,20 +15,24 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       sign_in(@user)
-      respond_with @user, :location => users_path
+      render :json => {:info => "user created", :user => @user}, :status => 200
+      #respond_with @user, :location => users_path
     else
-      respond_with @user.errors, :location => users_path
+      render :json => {:info => "user created error", :error => @user.error}, :status => 500
+      #respond_with @user.errors, :location => users_path
     end
   end
 
   def update
     #respond_with 
     User.update(current_user.id, user_params)
+    render :json => {:info => "user updated", :user => current_user}, :status => 200
   end
 
   def destroy
     #respond_with 
     User.find(current_user.id).destroy
+    render :json => {:info => "user destroyed"}, :status => 200
   end
 
   private

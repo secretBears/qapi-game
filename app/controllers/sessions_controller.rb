@@ -7,6 +7,7 @@ class SessionsController < Devise::SessionsController
 
   def destroy
     warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
+    current_user.remove_authentication_token
     sign_out
     render :status => 200, :json => { :success => true, :info => "Logged out", :csrfParam => request_forgery_protection_token, :csrfToken => form_authenticity_token }
   end

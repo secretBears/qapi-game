@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
       self.authentication_token = generate_authentication_token
     end
   end
+
+  def remove_authentication_token
+    self.authentication_token = nil
+    self.save
+  end
  
   private
   
