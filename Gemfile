@@ -31,6 +31,9 @@ gem 'devise'
 
 gem 'rack-cors', :require => 'rack/cors'
 
+# https://github.com/gonzalo-bulnes/simple_token_authentication
+gem 'simple_token_authentication'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

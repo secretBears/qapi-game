@@ -1,5 +1,5 @@
-class UsersController < BaseController
-  before_filter :authenticate_user!, :except => [:create, :index]
+class UsersController < ApplicationController
+  before_filter :authenticate_user!, :except => [:create]
   before_action :set_user, only: [:show]
 
   def index
@@ -21,11 +21,13 @@ class UsersController < BaseController
   end
 
   def update
-    respond_with :api, User.update(current_user.id, user_params)
+    #respond_with 
+    User.update(current_user.id, user_params)
   end
 
   def destroy
-    respond_with :api, User.find(current_user.id).destroy
+    #respond_with 
+    User.find(current_user.id).destroy
   end
 
   private

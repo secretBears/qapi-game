@@ -38,8 +38,8 @@ module QapiGame
       allow do
         origins '*'
         resource '*',
-        :headers => :any,
-        :methods => [:get, :post, :put, :delete, :options]
+            :headers => :any,
+            :methods => [:get, :post, :put, :delete, :options]
       end
     end
   end
