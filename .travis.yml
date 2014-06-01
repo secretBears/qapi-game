@@ -9,4 +9,10 @@ before_script:
 - cp config/database.travis.yml config/database.yml
 - bundle exec rake db:setup
 script: bundle exec rake test
-
+deploy:
+  provider: heroku
+  api_key:
+    secure: mScKHOdS73akfn/yuJLdIfxfVv1n0Op+nDqSoybfy3PBQ5m7wonx2OoiGY13yrgauwjTjaoqLB9cNt4qGP2c0ZMv7eBudsPB5Th9PfHZ10GOlIeyBXql4Y1+GbvoCGFN6egv4XQ68UhjKWKBi0j/btEM89YRIj9uLHXv8+LumnM=
+  app: qapi-game
+  on:
+    repo: secretBears/qapi-game
