@@ -1,15 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  devise_scope :user do
-    match '/sessions' => 'sessions#create', :via => :post
-    match '/sessions' => 'sessions#destroy', :via => :delete
-    match '/sessions' => 'sessions#options', :via => :options
+  scope 'api', format: 'json' do
+
+    devise_for :users
+    # The priority is based upon order of creation: first created -> highest priority.
+    # See how all your routes lay out with "rake routes".
+
+    devise_scope :user do
+      match '/sessions' => 'sessions#create', :via => :post
+      match '/sessions' => 'sessions#destroy', :via => :delete
+      match '/sessions' => 'sessions#options', :via => :options
+    end
+
+    resources :users, format: 'json'
+
   end
-
-  resources :users
   
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

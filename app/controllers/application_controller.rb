@@ -9,13 +9,14 @@ class ApplicationController < ActionController::Base
   private
   
   def authenticate_user_from_token
-    user_email = params[:user_email].presence
+    user_email = params[:userEmail].presence
     user       = user_email && User.find_by_email(user_email)
+    puts user_email
  
     # Notice how we use Devise.secure_compare to compare the token
     # in the database with the token given in the params, mitigating
     # timing attacks.
-    if user && Devise.secure_compare(user.authentication_token, params[:user_token])
+    if user && Devise.secure_compare(user.authentication_token, params[:userToken])
       puts "SIGN IN"
       sign_in user, store: false
     end

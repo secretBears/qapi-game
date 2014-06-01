@@ -1,8 +1,12 @@
 class SessionsController < Devise::SessionsController
+  before_filter :authenticate_user_from_token, only: [:destroy]
+  protect_from_forgery with: :null_session
 
   def create
     warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
-    render :status => 200, :json => { :success => true, :info => "Logged in", :user => current_user }
+    #render :status => 200, :json => { :success => true, :info => "Logged in", :user => current_user }
+    @user = current_user
+    render 'create'
   end
 
   def destroy

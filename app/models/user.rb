@@ -13,8 +13,9 @@ class User < ActiveRecord::Base
   end
 
   def remove_authentication_token
+    puts "remove_authentication_token ~~~~~~~~~~"
     self.authentication_token = nil
-    self.save
+    self.save!
   end
  
   private

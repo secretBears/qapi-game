@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+  respond_to :json
   before_filter :authenticate_user!, :except => [:create]
   before_action :set_user, only: [:show]
 
   def index
     #render :json => :user => current_user, :status => 200
+    @users = User.all
     render 'index'
   end
 
