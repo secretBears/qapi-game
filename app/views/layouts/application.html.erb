@@ -1,14 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="qapiApp">
 <head>
   <title>QapiGame</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application', controller_name %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<header ng-class="{blur: !menuhidden}">
+      <nav class="navbar" role="navigation">
+        <span class="navbar-left qapi-font toggleMenu" ng-click="toggleMenu()">&#xe600;</span>
+        <img class="logo" src="assets/logo.svg"></img>
+        <div class="clear"></div>
+      </nav>
+    </header>
+
+    <!-- Add your site or application content here -->
+		<%= yield %>
+
+    <footer ng-class="{blur: !menuhidden}">
+
+    </footer>
+
+    <div class="menu-container" ng-class="{show: !menuhidden}">
+        <div class="menu-container-content">
+            <div class="menu-header">
+              <span class="navbar-left qapi-font toggleMenu" ng-click="toggleMenu()">&#xe600;</span>
+              <img class="menu-logo" src="assets/logo.svg"></img>
+              <div class="clear"></div>
+            </div>
+            <div class="user-data">
+              <span class="user-img"></span>
+              <span class="name">{{player.email}}</span>
+              <div class="clear"></div>
+            </div>
+            <nav class="menu-links">
+                <a href="#" ng-click="toggleMenu()"><div class="hoverlink"></div>Home</a>
+                <a href="#about" ng-click="toggleMenu()"><div class="hoverlink"></div>About</a>
+                <a href="#finish" ng-click="toggleMenu()"><div class="hoverlink"></div>Quit Game</a>
+                <a href="#logout" ng-click="toggleMenu();logout();"><div class="hoverlink"></div>Logout</a>
+            </nav>
+        </div>
+    </div>
 
 </body>
 </html>

@@ -1,5 +1,4 @@
-class SessionsController < Devise::SessionsController
-  before_filter :authenticate_user_from_token, only: [:destroy]
+class SessionsController
   protect_from_forgery with: :null_session
 
   def create

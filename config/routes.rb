@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
 
+  root 'main#index'
+
   scope 'api', format: 'json' do
 
-    devise_for :users
-    # The priority is based upon order of creation: first created -> highest priority.
-    # See how all your routes lay out with "rake routes".
+    devise_for :users, path_names: { sign_in: "login", sign_out: "logout" }
 
-    devise_scope :user do
-      match '/sessions' => 'sessions#create', :via => :post
-      match '/sessions' => 'sessions#destroy', :via => :delete
-      match '/sessions' => 'sessions#options', :via => :options
-    end
+    #devise_scope :user do
+    #  match '/sessions' => 'devise/sessions#new', :via => :post
+    #  match '/sessions' => 'sessions#destroy', :via => :delete
+      # match '/sessions' => 'sessions#options', :via => :options
+    #end
 
     resources :users, format: 'json'
 

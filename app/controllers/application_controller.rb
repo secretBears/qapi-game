@@ -1,12 +1,17 @@
 class ApplicationController < ActionController::Base
   # This is our new function that comes before Devise's one
-  before_filter :authenticate_user_from_token
+  # before_filter :authenticate_user_from_token
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception
+  before_filter :test_func
 
   private
+
+  def test_func
+    Rails.logger.info session
+  end
   
   def authenticate_user_from_token
     user_email = params[:userEmail].presence
