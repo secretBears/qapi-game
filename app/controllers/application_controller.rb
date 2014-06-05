@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   private
 
   def test_func
-    Rails.logger.info session
+    puts form_authenticity_token
   end
   
   def authenticate_user_from_token

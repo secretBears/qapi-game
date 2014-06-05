@@ -3,15 +3,13 @@
 angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', 'QapiRestangular',
 	function($http, $window, $rootScope, QapiRestangular){
 	var instance;
-	var Restangular;
+	var Restangular = QapiRestangular.getRestangular();;
 
 	var Player = function Player(config){
 		config = config || {};
 		this.email = config.email || '';
 		this.token = config.token || '';
 		this.id = config.id || null;
-		this.setRestangular();
-		//this.setDefaultRequestParams();
 	};
 
 	Player.prototype.login = function(email, password){
@@ -20,7 +18,6 @@ angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', '
 				this.email = data.user.email;
 				this.token = data.user.token;
 				this.id = data.user.id;
-				this.setDefaultRequestParams();
 				$window.location.href = '/#/';
 			}.bind(this),
 			function(){
@@ -43,7 +40,7 @@ angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', '
 	};
 
 	Player.prototype.logout = function(){
-		Restangular.all('sessions').remove().then(
+		Restangular.all('users').all('logout').remove().then(
 			function(){
 				$window.location.href = '/#/login';
 				this.resetData();
@@ -62,20 +59,10 @@ angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', '
 		Restangular.all('users').post({ 'user': newUser });
 	};
 
-	Player.prototype.setDefaultRequestParams = function(){
-		QapiRestangular.setConfig({userEmail:this.email, userToken:this.token});
-		this.setRestangular();
-	};
-
-	Player.prototype.setRestangular = function(){
-		Restangular = QapiRestangular.getRestangular();
-	};
-
 	Player.prototype.resetData = function(){
 		this.email = '';
 		this.token = '';
 		this.id = null;
-		this.setDefaultRequestParams();
 	};
 	
 
