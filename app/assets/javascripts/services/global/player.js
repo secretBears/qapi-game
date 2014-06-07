@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', 'QapiRestangular',
-	function($http, $window, $rootScope, QapiRestangular){
+angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', 'Restangular',
+	function($http, $window, $rootScope, Restangular){
 	var instance;
-	var Restangular = QapiRestangular.getRestangular();;
 
 	var Player = function Player(config){
 		config = config || {};

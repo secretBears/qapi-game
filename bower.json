@@ -1,0 +1,10 @@
+{
+  "name": "qapi-game",
+  "dependencies": {
+    "html5shiv": "latest",
+    "requirejs": "latest",
+    "jquery-ujs": "latest",
+    "normalize-css": "latest"
+  }
+}
+

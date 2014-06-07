@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets//sprockets-directives) for details
 // about supported directives.
 //
+<<<<<<< HEAD
 //= require jquery
 //= require jquery_ujs
 //= require underscore
@@ -21,3 +22,5 @@
 //= require angular-loading-bar
 //= require angular-restangular
 
+=======
+>>>>>>> 9ce58fe14be32f6a80108e1c7226dd388ea5013a
