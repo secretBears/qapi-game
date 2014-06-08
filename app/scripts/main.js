@@ -3,13 +3,10 @@
 define('qapi-game',
   [
     // Add your dependencies here
-    'jquery',
-    'jquery-ujs'
+    'application'
   ],
 
-  function($){
-
-      // Add your initialization code here
+  function(){
 
   }
 );

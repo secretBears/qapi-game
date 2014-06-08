@@ -135,7 +135,6 @@ DEPENDENCIES
   devise
   half-pipe!
   jbuilder (~> 2.0)
-  jquery-rails
   ng-rails-csrf
   pg
   rack-cors

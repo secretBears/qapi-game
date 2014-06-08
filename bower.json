@@ -4,7 +4,17 @@
     "html5shiv": "latest",
     "requirejs": "latest",
     "jquery-ujs": "latest",
-    "normalize-css": "latest"
+    "normalize-css": "latest",
+    "angular": "latest",
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "angular-resource": "1.2.15",
+    "angular-cookies": "1.2.15",
+    "angular-sanitize": "1.2.15",
+    "angular-route": "1.2.15",
+    "angular-loading-bar": ">=0.4.2",
+    "underscore": "1.5.2",
+    "restangular": "1.4.0"
   }
 }
 

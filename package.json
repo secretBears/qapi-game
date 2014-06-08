@@ -19,6 +19,8 @@
     "grunt-connect-proxy": "~0.1.5",
     "grunt-rails-server": "git://github.com/joefiorini/grunt-rails-server.git",
     "load-grunt-tasks": "~0.1.0",
-    "almond": "~0.2.6"
+    "almond": "~0.2.6",
+    
+    "angular-loading-bar": ">=0.4.2"
   }
 }
