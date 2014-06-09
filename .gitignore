@@ -23,3 +23,6 @@ public/assets/*
 bower_components
 public/assets/*
 !public/assets/images
+
+# Ignore sass cache
+.sass-cache
