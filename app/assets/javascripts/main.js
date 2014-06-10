@@ -54,6 +54,14 @@ angular
           templateUrl: 'assets/users/index.html',
           controller: 'UserCtrl'
         })
+        .when('/games/', {
+          templateUrl: 'assets/games/index.html',
+          controller: 'GameCtrl'
+        })
+        .when('/games/:id', {
+          templateUrl: 'assets/games/show.html',
+          controller: 'GameCtrl'
+        })
         .otherwise({
           redirectTo: '/'
         });

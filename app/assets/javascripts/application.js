@@ -20,4 +20,4 @@
 //= require angular-route
 //= require angular-loading-bar
 //= require angular-restangular
-
+//= require main

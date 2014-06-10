@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     #end
 
     resources :users, format: 'json'
+    resources :games, format: 'json'
 
   end
   

@@ -16,3 +16,13 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+node_modules
+bower_components
+public/assets/*
+!public/assets/imagesnode_modules
+bower_components
+public/assets/*
+!public/assets/images
+
+# Ignore sass cache
+.sass-cache
