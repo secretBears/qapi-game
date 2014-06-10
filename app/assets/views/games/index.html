@@ -1,7 +1,10 @@
 
+<button id="newGame" ng-click="newGame()">new Game</button>
+
 <ul>
 	<li ng-repeat="game in games">
-		<span>{{game.id}}</span>
-		<span>{{game.finish}}</span>
-	<li>
-<ul>
+		<div><a href="/#/games/{{game.id}}">Game {{game.id}}</a></div>
+		<div><span>is finished? {{game.finish}}</span></div>
+		<div><span>started? {{game.started}}</span></div>
+	</li>
+</ul>

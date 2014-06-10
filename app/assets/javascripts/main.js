@@ -50,10 +50,16 @@ angular
           templateUrl: 'assets/finish.html',
           controller: 'FinishCtrl'
         })
+
+        // ############ USER ############
+
         .when('/users/', {
           templateUrl: 'assets/users/index.html',
           controller: 'UserCtrl'
         })
+
+        // ############ GAME ############
+
         .when('/games/', {
           templateUrl: 'assets/games/index.html',
           controller: 'GameCtrl'
@@ -61,6 +67,21 @@ angular
         .when('/games/:id', {
           templateUrl: 'assets/games/show.html',
           controller: 'GameCtrl'
+        })
+        .when('/games/new', {
+          templateUrl: 'assets/games/new.html',
+          controller: 'GameCtrl'
+        })
+        .when('/games/:id/edit', {
+          templateUrl: 'assets/games/edit.html',
+          controller: 'GameCtrl'
+        })
+
+        // ############ QUESTION ############
+
+        .when('/games/:game_id/questions', {
+          templateUrl: 'assets/questions/index.html',
+          controller: 'QuestionCtrl'
         })
         .otherwise({
           redirectTo: '/'

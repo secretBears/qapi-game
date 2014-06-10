@@ -12,8 +12,8 @@ user1 = User.create(email: "test@qapi.at", password: "12345678")
 user2 = User.create(email: "test2@qapi.at", password: "12345678")
 
 ## Create Game
-game = Game.create(finish: true)
-game_running = Game.create(finish: false)
+game = Game.create(finish: true, started: true)
+game_running = Game.create(finish: false, started: true)
 Game.create(finish: false)
 
 ## Add Users to Game
@@ -24,12 +24,14 @@ game_running.users << user2
 
 ## Create 10 Questions and add them to game
 (1..10).each do |i|
-	q = Question.create(question: "Frage #{i}", answer: "true", game_id: game.id)
+	a = ((i%2)==0) ? "true" : "false"
+	q = Question.create(question: "Frage #{i}", answer: a, game_id: game.id)
 end
 
 ## Create an answer for every user for every question
-(1..20).each do |i|
-	question = Question.find((i%10)+1)
-	user = User.find((i%2)+1)
-	Answer.create(answer: "false", user_id: user.id, question_id: question.id)
+User.all.each do |user|
+	(1..10).each do |i|
+		question = Question.find((i%10)+1)
+		Answer.create(answer: "true", user_id: user.id, question_id: question.id)
+	end
 end
