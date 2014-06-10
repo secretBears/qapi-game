@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html ng-app="qapi-game">
+<html ng-app="qapiApp">
 <head>
   <title>QapiGame</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag "main" %>
+  <script type="text/javascript">
+    window.onerror = function (errorMsg, url, lineNumber, columnNumber, errorObject) {
+      console.log(errorObject);
+    }
+  </script>
   </head>
 <body>
 
 <header ng-class="{blur: !menuhidden}">
       <nav class="navbar" role="navigation">
         <span class="navbar-left qapi-font toggleMenu" ng-click="toggleMenu()">&#xe600;</span>
-        <%= image_tag "logo.svg" %>
+        <%= image_tag "logo.svg", :class => "logo" %>
         <div class="clear"></div>
       </nav>
     </header>
@@ -26,7 +32,7 @@
         <div class="menu-container-content">
             <div class="menu-header">
               <span class="navbar-left qapi-font toggleMenu" ng-click="toggleMenu()">&#xe600;</span>
-              <%= image_tag "logo.svg" %>
+              <%= image_tag "logo.svg", :class => "menu-logo" %>
               <div class="clear"></div>
             </div>
             <div class="user-data">
@@ -42,7 +48,5 @@
             </nav>
         </div>
     </div>
-
-  <%= javascript_include_tag "application" %>
   </body>
 </html>

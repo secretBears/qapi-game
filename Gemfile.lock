@@ -1,19 +1,3 @@
-GIT
-  remote: git://github.com/d-i/half-pipe.git
-  revision: 35f6b1b26b8ade03c760db3a446cf80cfe49cfa0
-  specs:
-    half-pipe (0.3.0.beta.2)
-      rails (>= 4.0.0)
-      sass
-
-GIT
-  remote: git://github.com/joefiorini/sass-css-importer.git
-  revision: 465a260ce92055572b2a7d2cd5e356d74ec9260a
-  branch: load-paths
-  specs:
-    sass-css-importer (1.0.0.beta.0)
-      sass (>= 3.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -60,12 +44,15 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
-    execjs (2.1.0)
+    execjs (2.2.0)
     hike (1.2.3)
     i18n (0.6.9)
-    jbuilder (2.0.7)
+    jbuilder (2.1.0)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jquery-rails (3.1.0)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -99,11 +86,17 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
-    sass (3.3.8)
+    sass (3.2.19)
+    sass-rails (4.0.3)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.2.0)
+      sprockets (~> 2.8, <= 2.11.0)
+      sprockets-rails (~> 2.0)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
-    sprockets (2.12.1)
+    spring (1.1.3)
+    sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -132,14 +125,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  coffee-rails (~> 4.0.0)
   devise
-  half-pipe!
   jbuilder (~> 2.0)
+  jquery-rails
   ng-rails-csrf
   pg
   rack-cors
   rails (= 4.1.0)
-  sass-css-importer!
+  sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  spring
   turbolinks
   uglifier (>= 1.3.0)
