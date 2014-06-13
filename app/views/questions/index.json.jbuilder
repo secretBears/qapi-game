@@ -2,8 +2,8 @@
 json.array! (@questions) do |question|
 	json.id question.id
 	json.question question.question
-	json.answer Answer.of_question_and_user(question, current_user).answer
-	json.rightAnswer question.answer
+	json.answer question.answer_of_user(current_user)
+	json.rightAnswer question.right_answer
 	json.isRight question.is_right?(current_user)
 	json.otherUsersAnswers do 
 		json.array! question.other_users_answers(current_user) do |otherAnswer|

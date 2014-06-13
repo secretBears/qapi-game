@@ -23,7 +23,45 @@ class Game < ActiveRecord::Base
 		return true
 	end
 
-	def start
-		# TODO: get Questions + answers from QAPI
+	def get_question(param={})
+		if param[:id].to_i >= 10
+			return "finished"
+		end
+		question = questions[param[:id].to_i]
+		if question.nil?
+			if add_question(param)
+				question = questions.last
+			end
+		end
+		question
+	end
+
+	def add_question(param={})
+		if questions.count < 10
+			req = Requester.send_request(param)
+			if(req.kind_of?(Array))
+				req = req[0];
+			end
+			req = string_keys_to_symbols(req)
+			if(req[:status].to_i > 200)
+				return nil
+			end
+			puts "~~~~~~~~~~~~~~~~"
+			puts req
+			puts "~~~~~~~~~~~~~~~~"
+			question = Question.create(:question => req[:question])
+			req[:answers].each do |answer|
+				answer = string_keys_to_symbols(answer)
+				qa = QapiAnswer.create(:answer => answer[:answer], :is_true => answer[:isTrue])
+				question.qapi_answers << qa
+			end
+			self.questions << question
+		end
+	end
+
+	private
+
+	def string_keys_to_symbols(string_hash)
+		string_hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 	end
 end

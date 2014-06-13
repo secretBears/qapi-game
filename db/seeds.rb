@@ -22,16 +22,21 @@ game.users << user2
 game_running.users << user1
 game_running.users << user2
 
-## Create 10 Questions and add them to game
+## Create 10 Questions + 4 answers (QAPI) and add them to game
 (1..10).each do |i|
-	a = ((i%2)==0) ? "true" : "false"
-	q = Question.create(question: "Frage #{i}", answer: a, game_id: game.id)
+	q = Question.create(question: "Frage #{i}", game_id: game.id)
+	random = rand(4) + 1
+	(1..4).each do |j|
+		qa = QapiAnswer.create(answer: "Answer #{i}#{j}", is_true: random==j)
+		q.qapi_answers << qa
+	end
 end
 
 ## Create an answer for every user for every question
 User.all.each do |user|
 	(1..10).each do |i|
+		random = rand(104)+1
 		question = Question.find((i%10)+1)
-		Answer.create(answer: "true", user_id: user.id, question_id: question.id)
+		Answer.create(answer: "Answer #{random}", user_id: user.id, question_id: question.id)
 	end
 end

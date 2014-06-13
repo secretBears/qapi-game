@@ -15,7 +15,7 @@ angular.module('qapiApp').factory('Game', ['Restangular',
     };
 
     Game.prototype.one = function(id){
-    	return Restangular.one('games', id).get().$object;
+    	return Restangular.one('games', id).get();
     };
 
     Game.prototype.update = function(game){
@@ -27,8 +27,17 @@ angular.module('qapiApp').factory('Game', ['Restangular',
     };
 
     Game.prototype.allQuestions = function(id) {
-        return Restangular.one('games', id).all('questions').getList().$object;
+        return Restangular.one('games', id).all('questions').getList();
     };
+
+    Game.prototype.getQuestion = function(id, questionNumber, coords){
+        // 47.809490&13.055010
+        return Restangular.one('games', id).one('questions', questionNumber).customGET("", {lat: "47.809490", lon: "13.055010"});
+    };
+
+    Game.prototype.setAnswer = function(gameid, questionid, answer){
+        return Restangular.one('games', gameid).one('questions', questionid).all('answers').post({answer: {answer: answer }});
+    }
 
     return Game;
 }]);

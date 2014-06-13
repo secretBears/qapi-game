@@ -76,6 +76,10 @@ angular
           templateUrl: 'assets/games/edit.html',
           controller: 'GameCtrl'
         })
+        .when('/games/:id/play', {
+          templateUrl: 'assets/games/play.html',
+          controller: 'GameCtrl'
+        })
 
         // ############ QUESTION ############
 

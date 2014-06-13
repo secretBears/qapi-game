@@ -1,10 +1,22 @@
 class Question < ActiveRecord::Base
 	belongs_to :game
 	has_many :answers
+	has_many :qapi_answers
+
+	def right_answer
+		qapi_answers.where(:is_true => "true").first.answer
+	end
+
+	def answer_of_user(user)
+		answer = Answer.of_question_and_user(self, user)
+		if answer.nil?
+			return nil
+		end
+		answer.answer
+	end
 
 	def is_right?(user)
-		a = Answer.of_question_and_user(self, user)
-		answer.to_s == a.answer.to_s
+		answer_of_user(user).to_s == right_answer.to_s
 	end
 
 	def other_users_answers(user)

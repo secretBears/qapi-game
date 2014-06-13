@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 
     resources :users, format: 'json'
     resources :games, format: 'json' do
-      resources :questions, format: 'json'
+      resources :questions, format: 'json' do
+        resources :answers, format: 'json'
+      end
     end
 
   end

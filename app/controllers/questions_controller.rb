@@ -8,6 +8,17 @@ class QuestionsController < ApplicationController
   	@questions = @game.questions
   end
 
+  def show
+    @question = @game.get_question(params)
+    if @question.nil?
+      render :json => {:info => "QAPI not available"}, :status => 500
+    elsif @question == 'finished'
+      render :json => {:info => "finished"}, :status => 500
+    else
+      render 'show'
+    end
+  end
+
   def create
     @question = Question.create(question_params)
     if @question.valid?
