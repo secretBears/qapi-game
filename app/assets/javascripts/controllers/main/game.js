@@ -11,6 +11,7 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 		$scope.play = {};
 		$scope.selectedAnswer = -1;
 		$scope.indexOfRightAnswer = -1;
+		$scope.refreshPage = false;
 
 		var game = new Game();
 		$scope.games = game.all();
@@ -60,6 +61,7 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 		};
 
 		$scope.getQuestion = function(){
+			$scope.play.question = {};
 			navigator.geolocation.getCurrentPosition(function(pos){
 				var nextQuestion = $scope.getNumberOfNextQuestion();
 				game.getQuestion($scope.game.id, nextQuestion, pos.coords).then(function(data){
@@ -73,6 +75,7 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 						});
 						$scope.finished = true;
 					}
+					$scope.refreshPage = true;
 				});
 			},
 			function(){
@@ -97,6 +100,8 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 			}
 			return count;
 		};
+
+		$scope.reload = $window.location.reload;
 
 		if($routeParams.id){
 			var gameReq = game.one($routeParams.id).then(function(data){

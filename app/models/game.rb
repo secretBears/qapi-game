@@ -39,6 +39,9 @@ class Game < ActiveRecord::Base
 	def add_question(param={})
 		if questions.count < 10
 			req = Requester.send_request(param)
+			puts "~~~~~~~~~~~~~~~~"
+			puts req
+			puts "~~~~~~~~~~~~~~~~"
 			if(req.kind_of?(Array))
 				req = req[0];
 			end
@@ -46,16 +49,13 @@ class Game < ActiveRecord::Base
 			if(req[:status].to_i > 200)
 				return nil
 			end
-			puts "~~~~~~~~~~~~~~~~"
-			puts req
-			puts "~~~~~~~~~~~~~~~~"
 			question = Question.create(:question => req[:question])
 			req[:answers].each do |answer|
 				answer = string_keys_to_symbols(answer)
 				qa = QapiAnswer.create(:answer => answer[:answer], :is_true => answer[:isTrue])
 				question.qapi_answers << qa
 			end
-			self.questions << question
+			questions << question
 		end
 	end
 

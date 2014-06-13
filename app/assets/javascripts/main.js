@@ -105,9 +105,9 @@ angular
     $rootScope.isPlaying = false;
     $rootScope.player = Player;
 
-    $rootScope.toggleMenu = function(){
+    /*$rootScope.toggleMenu = function(){
       $rootScope.menuhidden = !$rootScope.menuhidden;
-    };
+    };*/
 
     $rootScope.logout = $rootScope.player.logout.bind(Player);
   }]);

@@ -1,6 +1,6 @@
 <div class="question">
   <div class="question-text">
-    <span>{{play.question.question}}</span>
+    <span>{{play.question.question}}<a href="#" ng-click="reload" ng-show="refreshPage">Please Reload ...</a></span>
   </div>
   <span class="question-count">Question {{getNumberOfNextQuestion()}}/{{numberofquestions}}</span>
   <div class="question-timeline">

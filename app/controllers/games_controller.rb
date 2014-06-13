@@ -27,9 +27,6 @@ class GamesController < ApplicationController
         return
       end
     else
-      if game_params[:started]
-        @game.start()
-      end
       @game.update(game_params)
     end
     render 'show'
