@@ -22,4 +22,8 @@ class Game < ActiveRecord::Base
 		end
 		return true
 	end
+
+	def start
+		# TODO: get Questions + answers from QAPI
+	end
 end

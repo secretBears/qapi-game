@@ -21,12 +21,15 @@ class GamesController < ApplicationController
   end
 
   def update
-    if !game_params[:userEmail].nil? && !game_params[:add].nil?
+    if !game_params[:userEmail].nil? && !game_params[:add].nil? && !@game.started
       if !@game.update_player(game_params)
         render :json => {:error => "Email does not exist"}, :status => 500
         return
       end
     else
+      if game_params[:started]
+        @game.start()
+      end
       @game.update(game_params)
     end
     render 'show'

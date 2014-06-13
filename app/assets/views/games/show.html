@@ -5,7 +5,7 @@ ID: {{game.id}}
 Finish: {{game.finish}}
 Started: {{game.started}}
 
-<a href="#/games/{{game.id}}/edit">Edit Game</a>
+<a ng-hide="game.started" href="#/games/{{game.id}}/edit">Edit Game</a>
 
 <h3>Players:</h3>
 <ul>
