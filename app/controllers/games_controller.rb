@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 	respond_to :json
   before_filter :authenticate_user!
   before_filter :set_own_games
-  before_filter :set_game, except: [:index, :create]
+  before_filter :set_game, except: [:index]
 
   def index
   end

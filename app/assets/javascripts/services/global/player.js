@@ -7,16 +7,14 @@ angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', '
 	var Player = function Player(config){
 		config = config || {};
 		this.email = config.email || '';
-		this.token = config.token || '';
 		this.id = config.id || null;
 	};
 
 	Player.prototype.login = function(email, password){
-		Restangular.all('users').all('login').post({user:{email:email, password:password}}).then(
+		Restangular.all('sessions').post({user:{email:email, password:password}}).then(
 			function(data){
-				this.email = data.user.email;
-				this.token = data.user.token;
-				this.id = data.user.id;
+				this.email = data.email;
+				this.id = data.id;
 				$window.location.href = '/#/';
 			}.bind(this),
 			function(){
@@ -25,13 +23,13 @@ angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', '
 	};
 
 	Player.prototype.isLogedIn = function(){
-		if(this.email === '' || this.token === ''){
+		if(this.email === ''){
 			$window.location.href = '/#/login';
 			return;
 		}
 		Restangular.one('users', this.id).get().then(
 			function(data){
-				console.log(data);
+				console.log('user is logged in');
 			},
 			function(){
 				$window.location.href = '/#/login';
@@ -39,9 +37,11 @@ angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', '
 	};
 
 	Player.prototype.logout = function(){
-		Restangular.all('users').all('logout').remove().then(
-			function(){
-				$window.location.href = '/#/login';
+		Restangular.all('sessions').remove().then(
+			function(data){
+				console.log(data);
+				alert("LOGOUT");
+				$window.location.href = '/';
 				this.resetData();
 			}.bind(this),
 			function(){
@@ -60,7 +60,6 @@ angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', '
 
 	Player.prototype.resetData = function(){
 		this.email = '';
-		this.token = '';
 		this.id = null;
 	};
 	

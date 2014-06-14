@@ -16,39 +16,39 @@
 <body>
 
 <header ng-class="{blur: !menuhidden}">
-      <nav class="navbar" role="navigation">
-        <span class="navbar-left qapi-font toggleMenu" ng-click="toggleMenu()">&#xe600;</span>
-        <%= image_tag "logo.svg", :class => "logo" %>
-        <div class="clear"></div>
-      </nav>
-    </header>
+  <nav class="navbar" role="navigation">
+    <span class="navbar-left qapi-font toggleMenu" ng-click="toggleMenu()">&#xe600;</span>
+    <%= image_tag "logo.svg", :class => "logo" %>
+    <div class="clear"></div>
+  </nav>
+</header>
 
-    <!-- Add your site or application content here -->
-		<%= yield %>
+<!-- Add your site or application content here -->
+<%= yield %>
 
-    <footer ng-class="{blur: !menuhidden}">
+<footer ng-class="{blur: !menuhidden}">
 
-    </footer>
+</footer>
 
-    <div class="menu-container" ng-class="{show: !menuhidden}">
-        <div class="menu-container-content">
-            <div class="menu-header">
-              <span class="navbar-left qapi-font toggleMenu" ng-click="toggleMenu()">&#xe600;</span>
-              <%= image_tag "logo.svg", :class => "menu-logo" %>
-              <div class="clear"></div>
-            </div>
-            <div class="user-data">
-              <span class="user-img"></span>
-              <span class="name">{{player.email}}</span>
-              <div class="clear"></div>
-            </div>
-            <nav class="menu-links">
-                <a href="#" ng-click="toggleMenu()"><div class="hoverlink"></div>Home</a>
-                <a href="#about" ng-click="toggleMenu()"><div class="hoverlink"></div>About</a>
-                <a href="#games" ng-click="toggleMenu()"><div class="hoverlink"></div>Games</a>
-                <a href="#logout" ng-click="toggleMenu();logout();"><div class="hoverlink"></div>Logout</a>
-            </nav>
-        </div>
+<div class="menu-container" ng-class="{show: !menuhidden}">
+  <div class="menu-container-content">
+    <div class="menu-header">
+      <span class="navbar-left qapi-font toggleMenu" ng-click="toggleMenu()">&#xe600;</span>
+      <%= image_tag "logo.svg", :class => "menu-logo" %>
+      <div class="clear"></div>
     </div>
-  </body>
+    <div class="user-data">
+      <span class="user-img"></span>
+      <span class="name">{{player.email}}</span>
+      <div class="clear"></div>
+    </div>
+    <nav class="menu-links">
+      <a href="#" ng-click="toggleMenu()"><div class="hoverlink"></div>Home</a>
+      <a href="#about" ng-click="toggleMenu()"><div class="hoverlink"></div>About</a>
+      <a href="#games" ng-click="toggleMenu()"><div class="hoverlink"></div>Games</a>
+      <a href="#logout" ng-click="toggleMenu();logout();"><div class="hoverlink"></div>Logout</a>
+    </nav>
+  </div>
+</div>
+</body>
 </html>

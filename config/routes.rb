@@ -6,11 +6,11 @@ Rails.application.routes.draw do
 
     devise_for :users, path_names: { sign_in: "login", sign_out: "logout" }
 
-    #devise_scope :user do
-    #  match '/sessions' => 'devise/sessions#new', :via => :post
-    #  match '/sessions' => 'sessions#destroy', :via => :delete
+    devise_scope :user do
+      match '/sessions' => 'devise/sessions#create', :via => :post
+      match '/sessions' => 'sessions#destroy', :via => :delete
       # match '/sessions' => 'sessions#options', :via => :options
-    #end
+    end
 
     resources :users, format: 'json'
     resources :games, format: 'json' do

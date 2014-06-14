@@ -11,18 +11,18 @@ angular.module('qapiApp').controller('PlayCtrl', ['$scope', '$http', '$window', 
 		$scope.game.reset();
 		$scope.game.init();
 	}
-  ]);
+]);
 
 angular.module('qapiApp').controller('FinishCtrl', ['$scope', '$http', '$window', 'Game',
 	function ($scope, $http, $window, Game) {
 
 		$scope.game = Game;
 	}
-  ]);
+]);
 
 angular.module('qapiApp').controller('MainCtrl', ['$scope',
 	function ($scope) {
-		authenticateUser($scope.$parent.player);
+		//authenticateUser($scope.$parent.player);
 	}
 ]);
 
