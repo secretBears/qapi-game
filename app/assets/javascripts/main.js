@@ -27,64 +27,64 @@ angular
     function ($routeProvider, cfpLoadingBarProvider, RestangularProvider) {
       $routeProvider
         .when('/', {
-          templateUrl: 'assets/index.html',
+          templateUrl: 'templates/home.html',
           controller: 'MainCtrl'
         })
         .when('/login', {
-          templateUrl: 'assets/login.html',
+          templateUrl: 'templates/login.html',
           controller: 'AuthCtrl'
         })
         .when('/sign_up', {
-          templateUrl: 'assets/sign_up.html',
+          templateUrl: 'templates/sign_up.html',
           controller: 'AuthCtrl'
         })
         .when('/play', {
-          templateUrl: 'assets/play.html',
+          templateUrl: 'templates/play.html',
           controller: 'PlayCtrl'
         })
         .when('/about/', {
-          templateUrl: 'assets/about.html',
+          templateUrl: 'templates/about.html',
           controller: 'MainCtrl'
         })
         .when('/finish/', {
-          templateUrl: 'assets/finish.html',
+          templateUrl: 'templates/finish.html',
           controller: 'FinishCtrl'
         })
 
         // ############ USER ############
 
         .when('/users/', {
-          templateUrl: 'assets/users/index.html',
+          templateUrl: 'templates/users/index.html',
           controller: 'UserCtrl'
         })
 
         // ############ GAME ############
 
         .when('/games/', {
-          templateUrl: 'assets/games/index.html',
+          templateUrl: 'templates/games/index.html',
           controller: 'GameCtrl'
         })
         .when('/games/:id', {
-          templateUrl: 'assets/games/show.html',
+          templateUrl: 'templates/games/show.html',
           controller: 'GameCtrl'
         })
         .when('/games/new', {
-          templateUrl: 'assets/games/new.html',
+          templateUrl: 'templates/games/new.html',
           controller: 'GameCtrl'
         })
         .when('/games/:id/edit', {
-          templateUrl: 'assets/games/edit.html',
+          templateUrl: 'templates/games/edit.html',
           controller: 'GameCtrl'
         })
         .when('/games/:id/play', {
-          templateUrl: 'assets/games/play.html',
+          templateUrl: 'templates/games/play.html',
           controller: 'GameCtrl'
         })
 
         // ############ QUESTION ############
 
         .when('/games/:game_id/questions', {
-          templateUrl: 'assets/questions/index.html',
+          templateUrl: 'templates/questions/index.html',
           controller: 'QuestionCtrl'
         })
         .otherwise({
