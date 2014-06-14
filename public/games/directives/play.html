@@ -1,0 +1,17 @@
+<div class="question">
+  <div class="question-text">
+    <span>{{play.question.question}}<a href="#" ng-click="reload" ng-show="refreshPage">Please Reload ...</a></span>
+  </div>
+  <span class="question-count">Question {{getNumberOfNextQuestion()}}/{{numberofquestions}}</span>
+  <div class="question-timeline">
+    <div ng-style="{width: 100*getNumberOfNextQuestion()/numberofquestions+'%'}" class="question-timeline-done"></div>
+  </div>
+</div>
+<div class="answers">
+    <div ng-repeat="answer in play.question.answers"
+          ng-click="giveAnswer(play.question.id, answer.answer, $index)"
+          ng-class="{selectedAnswer: $index==selectedAnswer, rightAnswer: $index==indexOfRightAnswer}"
+          class="answer">
+      {{answer.answer}}
+    </div>
+</div>
