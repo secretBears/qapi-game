@@ -11,7 +11,7 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 		$scope.play = {};
 		$scope.selectedAnswer = -1;
 		$scope.indexOfRightAnswer = -1;
-		$scope.refreshPage = false;
+		$scope.errorMessage = null;
 
 		var game = new Game();
 		$scope.games = game.all();
@@ -64,19 +64,25 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 			$scope.play.question = {};
 			navigator.geolocation.getCurrentPosition(function(pos){
 				var nextQuestion = $scope.getNumberOfNextQuestion();
-				game.getQuestion($scope.game.id, nextQuestion, pos.coords).then(function(data){
-					$scope.questions.push(data);
-					$scope.play.question = data;
-				},
-				function(data){
-					if(data.data.info == 'finished'){
-						game.allQuestions($routeParams.id).then(function(data){
-							$scope.questions = data;
-						});
-						$scope.finished = true;
+				game.getQuestion($scope.game.id, nextQuestion, pos.coords).then(
+					// SUCCESS
+					function(data){
+						$scope.questions.push(data);
+						$scope.play.question = data;
+					},
+					// ERROR
+					function(data){
+						if(data.data.info == 'finished'){
+							game.allQuestions($routeParams.id).then(function(data){
+								$scope.questions = data;
+							});
+							$scope.finished = true;
+						}
+						else{
+							$scope.errorMessage = data.data.info;
+						}
 					}
-					$scope.refreshPage = true;
-				});
+				);
 			},
 			function(){
 				console.log("PLEASE ENABLE COORDS");
@@ -101,7 +107,10 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 			return count;
 		};
 
-		$scope.reload = $window.location.reload;
+		$scope.retry = function(){
+			$scope.errorMessage = null;
+			$scope.getQuestion();
+		};
 
 		if($routeParams.id){
 			var gameReq = game.one($routeParams.id).then(function(data){
@@ -123,11 +132,11 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 ])
 .directive('playContainer', function() {
     return {
-        templateUrl: 'assets/games/directives/play.html'
+        templateUrl: 'templates/games/directives/play.html'
     };
 })
 .directive('finishContainer', function() {
     return {
-        templateUrl: 'assets/games/directives/finish.html'
+        templateUrl: 'templates/games/directives/finish.html'
     };
 });

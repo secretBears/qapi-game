@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', 'Restangular',
-	function($http, $window, $rootScope, Restangular){
+angular.module('qapiApp').factory('Player', ['$http', '$location', '$rootScope', 'Restangular',
+	function($http, $location, $rootScope, Restangular){
 	var instance;
 
 	var Player = function Player(config){
@@ -15,7 +15,7 @@ angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', '
 			function(data){
 				this.email = data.email;
 				this.id = data.id;
-				$window.location.href = '/#/';
+				$location.path('/games');
 			}.bind(this),
 			function(){
 				console.log('ERROR LOGIN');
@@ -24,7 +24,7 @@ angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', '
 
 	Player.prototype.isLogedIn = function(){
 		if(this.email === ''){
-			$window.location.href = '/#/login';
+			$location.path('/login');
 			return;
 		}
 		Restangular.one('users', this.id).get().then(
@@ -32,16 +32,14 @@ angular.module('qapiApp').factory('Player', ['$http', '$window', '$rootScope', '
 				console.log('user is logged in');
 			},
 			function(){
-				$window.location.href = '/#/login';
+				$location.path('/login');
 			});
 	};
 
 	Player.prototype.logout = function(){
 		Restangular.all('sessions').remove().then(
 			function(data){
-				console.log(data);
-				alert("LOGOUT");
-				$window.location.href = '/';
+				$location.path('/');
 				this.resetData();
 			}.bind(this),
 			function(){

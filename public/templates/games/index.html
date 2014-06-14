@@ -1,8 +1,27 @@
 
 <button id="newGame" ng-click="newGame()">new Game</button>
 
+<h3>Running Games:</h3>
 <ul>
-	<li ng-repeat="game in games">
+	<li ng-repeat="game in games | filter:{ started: true, finish: false }">
+		<div><a href="/#/games/{{game.id}}">Game {{game.id}}</a></div>
+		<div><span>is finished? {{game.finish}}</span></div>
+		<div><span>started? {{game.started}}</span></div>
+	</li>
+</ul>
+
+<h3>Not Started Games:</h3>
+<ul>
+	<li ng-repeat="game in games | filter:{ started: false, finish: false }">
+		<div><a href="/#/games/{{game.id}}">Game {{game.id}}</a></div>
+		<div><span>is finished? {{game.finish}}</span></div>
+		<div><span>started? {{game.started}}</span></div>
+	</li>
+</ul>
+
+<h3>Finished Games:</h3>
+<ul>
+	<li ng-repeat="game in games | filter:{ started: true, finish: true }">
 		<div><a href="/#/games/{{game.id}}">Game {{game.id}}</a></div>
 		<div><span>is finished? {{game.finish}}</span></div>
 		<div><span>started? {{game.started}}</span></div>
