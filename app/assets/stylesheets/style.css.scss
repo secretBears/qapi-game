@@ -119,6 +119,14 @@ header{
   }
 }
 
+.other-user-answers.result-true{
+  color: green;
+}
+
+.other-user-answers.result-false{
+  color: red;
+}
+
 .hide{
   display: none;
 }

@@ -6,6 +6,7 @@ Finish: {{game.finish}}
 Started: {{game.started}}
 
 <a ng-hide="game.started" href="#/games/{{game.id}}/edit">Edit Game</a>
+<a ng-show="game.started && !game.finish" href="#/games/{{game.id}}/play">Play Game</a>
 
 <h3>Players:</h3>
 <ul>

@@ -9,4 +9,8 @@ class Answer < ActiveRecord::Base
 	def self.of_question_execpt_user(question, user)
 		Answer.where(:question_id => question.id).where.not(:user_id => user.id)
 	end
+
+	def self.of_questions_and_users(question_ids, user_ids)
+		Answer.where(:user_id => user_ids).where(:question_id => question_ids)
+	end
 end

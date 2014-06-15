@@ -3,7 +3,7 @@ json.array! (@questions) do |question|
 	json.id question.id
 	json.question question.question
 	json.answer question.answer_of_user(current_user)
-	json.rightAnswer question.right_answer
+	json.rightAnswer question.right_answer.answer
 	json.isRight question.is_right?(current_user)
 	json.otherUsersAnswers do 
 		json.array! question.other_users_answers(current_user) do |otherAnswer|

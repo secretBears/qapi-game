@@ -6,7 +6,6 @@
   <div class="row-yanswer">Your Answer: {{question.answer}}</div>
   <div class="row-ranswer">Right Answer: {{question.rightAnswer}}</div>
   <div ng-repeat="other in question.otherUsersAnswers" class="other-user-answers result-{{other.isRight}}">
-  	<div class="row-background"></div>
   	<span>{{other.user}}</span>
   	<span>{{other.answer}}</span>
   <div>

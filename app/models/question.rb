@@ -4,7 +4,7 @@ class Question < ActiveRecord::Base
 	has_many :qapi_answers
 
 	def right_answer
-		qapi_answers.where(:is_true => "true").first.answer
+		qapi_answers.where(:is_true => "true").first
 	end
 
 	def answer_of_user(user)
@@ -16,7 +16,7 @@ class Question < ActiveRecord::Base
 	end
 
 	def is_right?(user)
-		answer_of_user(user).to_s == right_answer.to_s
+		answer_of_user(user).to_s == right_answer.answer.to_s
 	end
 
 	def other_users_answers(user)

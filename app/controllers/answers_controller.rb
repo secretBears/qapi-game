@@ -9,7 +9,7 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
     @answer.user_id = current_user.id
     if @answer.save
-      render :json => {:info => "answer created", :answer => @answer}, :status => 200
+      render :json => {:info => "answer created", :answer => @answer, :rightAnswer => @question.right_answer}, :status => 200
     else
       render :json => {:info => "error at create", :answer => @answer.error}, :status => 500
     end

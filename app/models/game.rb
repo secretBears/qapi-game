@@ -25,8 +25,10 @@ class Game < ActiveRecord::Base
 
 	def get_question(param={})
 		if param[:id].to_i >= 10
+			check_if_all_users_finished()
 			return "finished"
 		end
+
 		question = questions[param[:id].to_i]
 		if question.nil?
 			if add_question(param)
@@ -49,7 +51,10 @@ class Game < ActiveRecord::Base
 			if(req[:status].to_i > 200)
 				return nil
 			end
+
+			req[:question] = req[:question][-1,1] == "?" ? req[:question] : req[:question]+"?"
 			question = Question.create(:question => req[:question])
+
 			req[:answers].each do |answer|
 				answer = string_keys_to_symbols(answer)
 				qa = QapiAnswer.create(:answer => answer[:answer], :is_true => answer[:isTrue])
@@ -63,5 +68,16 @@ class Game < ActiveRecord::Base
 
 	def string_keys_to_symbols(string_hash)
 		string_hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+	end
+
+	def check_if_all_users_finished
+		users = User.includes(:games).where('games.id' => id)
+
+		question_ids = questions.map{ |q| q.id }
+		user_ids = users.map{ |u| u.id }
+
+		num_of_answers = Answer.of_questions_and_users(question_ids, user_ids).count
+
+		finish = num_of_answers >= (questions.count * users.count)
 	end
 end

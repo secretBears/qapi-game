@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('qapiApp').factory('Player', ['$http', '$location', '$rootScope', 'Restangular',
-	function($http, $location, $rootScope, Restangular){
+angular.module('qapiApp').factory('Player', ['$http', '$location', '$rootScope', 'Restangular', '$window',
+	function($http, $location, $rootScope, Restangular, $window){
 	var instance;
 
 	var Player = function Player(config){
@@ -39,7 +39,7 @@ angular.module('qapiApp').factory('Player', ['$http', '$location', '$rootScope',
 	Player.prototype.logout = function(){
 		Restangular.all('sessions').remove().then(
 			function(data){
-				$location.path('/');
+				$window.location.reload();
 				this.resetData();
 			}.bind(this),
 			function(){

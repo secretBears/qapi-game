@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParams', '$window',
-	function ($scope, Game, $routeParams, $window) {
+angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParams', '$window', '$timeout',
+	function ($scope, Game, $routeParams, $window, $timeout) {
 		/*$scope.game = Game;
 		$scope.game.numberofquestions = $scope.game.numberofquestions || 0;
 		$scope.game.rightQuestions = $scope.game.rightQuestions || 0;*/
@@ -50,14 +50,33 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 			});
 		};
 
+		$scope.getIndexOfAnswer = function(rightAnswer){
+			var answers = $scope.play.question.answers;
+			for(var i=0; i<answers.length; i++){
+				if(answers[i].answer === rightAnswer.answer)
+					return i;
+			}
+			return -1;
+		};
+
 		$scope.giveAnswer = function(questionId, answer, index){
 			$scope.selectedAnswer = index;
 			$scope.questions[$scope.getNumberOfNextQuestion()].answer = answer;
-			game.setAnswer($scope.game.id, questionId, answer).then(function(){
-				$scope.selectedAnswer = -1;
-				$scope.indexOfRightAnswer = -1;
-				$scope.getQuestion();
-			});
+			game.setAnswer($scope.game.id, questionId, answer).then(
+				function(data){
+
+					$scope.indexOfRightAnswer = $scope.getIndexOfAnswer(data.rightAnswer);
+
+					$timeout(function(){
+						$scope.selectedAnswer = -1;
+						$scope.indexOfRightAnswer = -1;
+						$scope.getQuestion();
+					}, 2000);
+				},
+				function(error){
+					console.log(error);
+				}
+			);
 		};
 
 		$scope.getQuestion = function(){
