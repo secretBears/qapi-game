@@ -32,8 +32,8 @@ angular.module('qapiApp').factory('Game', ['Restangular',
 
     Game.prototype.getQuestion = function(id, questionNumber, coords){
         // 47.809490&13.055010
-        //return Restangular.one('games', id).one('questions', questionNumber).customGET("", {lat: "47.809490", lon: "13.055010"});
-        return Restangular.one('games', id).one('questions', questionNumber).customGET("", {lat: coords.latitude, lon: coords.latitude});
+        return Restangular.one('games', id).one('questions', questionNumber).customGET("", {lat: "47.809490", lon: "13.055010"});
+        //return Restangular.one('games', id).one('questions', questionNumber).customGET("", {lat: coords.latitude, lon: coords.latitude});
     };
 
     Game.prototype.setAnswer = function(gameid, questionid, answer){

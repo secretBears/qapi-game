@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParams', '$window', '$timeout',
-	function ($scope, Game, $routeParams, $window, $timeout) {
+angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParams', '$window', '$timeout', 'Player',
+	function ($scope, Game, $routeParams, $window, $timeout, Player) {
 		/*$scope.game = Game;
 		$scope.game.numberofquestions = $scope.game.numberofquestions || 0;
 		$scope.game.rightQuestions = $scope.game.rightQuestions || 0;*/
@@ -12,6 +12,24 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 		$scope.selectedAnswer = -1;
 		$scope.indexOfRightAnswer = -1;
 		$scope.errorMessage = null;
+
+		Player.allUsers().then(
+			function(data){
+				var userNames = [];
+				for(var i=0; i<data.length; i++){
+					userNames.push(data[i].email);
+				}
+
+				$( "#games_user_email" ).autocomplete({
+		      source: userNames,
+		      minLength: 3,
+		      select: function( event, ui ) {
+		      	$scope.addUserEmail = ui.item.value;
+		      }
+		    });
+			}
+		);
+
 
 		var game = new Game();
 		game.all().then(

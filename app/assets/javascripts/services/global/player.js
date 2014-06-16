@@ -11,11 +11,10 @@ angular.module('qapiApp').factory('Player', ['$http', '$location', '$rootScope',
 	};
 
 	Player.prototype.login = function(email, password){
-		Restangular.all('sessions').post({user:{email:email, password:password}}).then(
+		return Restangular.all('sessions').post({user:{email:email, password:password}}).then(
 			function(data){
 				this.email = data.email;
 				this.id = data.id;
-				$location.path('/games');
 			}.bind(this),
 			function(){
 				console.log('ERROR LOGIN');
@@ -53,7 +52,11 @@ angular.module('qapiApp').factory('Player', ['$http', '$location', '$rootScope',
 			'password': password,
 			'password_confirmation': confirmPassword
 		};
-		Restangular.all('users').post({ 'user': newUser });
+		return Restangular.all('users').post({ 'user': newUser });
+	};
+
+	Player.prototype.allUsers = function(){
+		return Restangular.all('users').getList();
 	};
 
 	Player.prototype.resetData = function(){

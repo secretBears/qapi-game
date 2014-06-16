@@ -1,16 +1,14 @@
 
-<h1>Game Show</h1>
+<h1>Game {{game.id}}</h1>
 
-ID: {{game.id}}
-Finish: {{game.finish}}
-Started: {{game.started}}
+<a class="qapi-button" ng-hide="game.started" href="#/games/{{game.id}}/edit">Edit Game</a>
+<a class="qapi-button" ng-show="game.started && !game.finish" href="#/games/{{game.id}}/play">Continue Game</a>
 
-<a ng-hide="game.started" href="#/games/{{game.id}}/edit">Edit Game</a>
-<a ng-show="game.started && !game.finish" href="#/games/{{game.id}}/play">Play Game</a>
-
-<h3>Players:</h3>
-<ul>
-	<li ng-repeat="user in game.users">
-		<div>{{user.email}}</div>
-	</li>
-</ul>
+<section class="qapi-section">
+	<h3>Players:</h3>
+	<ul class="list">
+		<li ng-repeat="user in game.users">
+			<div>{{user.email}}</div>
+		</li>
+	</ul>
+</section>
