@@ -19,7 +19,8 @@ angular.module('qapiApp').controller('AuthCtrl', ['$scope', 'Player', '$location
 		$scope.submitSignUp = function(){
 			$scope.player.signUp($scope.email, $scope.password, $scope.confirmPassword).then(
 				function(data){
-					$scope.$parent.currentUser = {};
+					Player.setData(data);
+					$scope.$parent.currentUser = data;
 					$location.path('/');
 				},
 				function(error){

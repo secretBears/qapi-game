@@ -100,7 +100,7 @@ class Game < ActiveRecord::Base
 			req[:question] = req[:question][-1,1] == "?" ? req[:question] : req[:question]+"?"
 			question = Question.create(:question => req[:question])
 
-			req[:answers].each do |answer|
+			req[:answers].shuffle.each do |answer|
 				answer = string_keys_to_symbols(answer)
 				qa = QapiAnswer.create(:answer => answer[:answer], :is_true => answer[:isTrue])
 				question.qapi_answers << qa
