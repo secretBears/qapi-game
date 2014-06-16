@@ -48,7 +48,7 @@ class Game < ActiveRecord::Base
 				req = req[0];
 			end
 			req = string_keys_to_symbols(req)
-			if(req[:status].to_i > 200)
+			if(req[:status].to_i > 200 || !req[:error].nil?)
 				return nil
 			end
 

@@ -27,8 +27,8 @@ angular
     function ($routeProvider, cfpLoadingBarProvider, RestangularProvider) {
       $routeProvider
         .when('/', {
-          templateUrl: 'templates/home.html',
-          controller: 'MainCtrl'
+          templateUrl: 'templates/games/index.html',
+          controller: 'GameCtrl'
         })
         .when('/login', {
           templateUrl: 'templates/login.html',

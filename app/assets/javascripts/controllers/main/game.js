@@ -14,7 +14,14 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 		$scope.errorMessage = null;
 
 		var game = new Game();
-		$scope.games = game.all();
+		game.all().then(
+			function(data){
+				$scope.games = data;
+			},
+			function(){
+				$window.location.href = "/#/login";
+			}
+		);
 
 		$scope.newGame = function(){
 			var createdGame = game.create({finish: false, started: false});
