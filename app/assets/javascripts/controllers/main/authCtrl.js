@@ -6,10 +6,12 @@ angular.module('qapiApp').controller('AuthCtrl', ['$scope', 'Player', '$location
 		$scope.submitLogin = function(){
 			$scope.player.login($scope.email, $scope.password).then(
 				function(data){
+					Player.setData(data);
+					$scope.$parent.currentUser = data;
 					$location.path('/games');
 				},
-				function(){
-					console.log('ERROR LOGIN');
+				function(data){
+					$scope.error = data.data.error;
 				}
 			);
 		};
@@ -17,10 +19,17 @@ angular.module('qapiApp').controller('AuthCtrl', ['$scope', 'Player', '$location
 		$scope.submitSignUp = function(){
 			$scope.player.signUp($scope.email, $scope.password, $scope.confirmPassword).then(
 				function(data){
+					$scope.$parent.currentUser = {};
 					$location.path('/');
 				},
 				function(error){
-					console.log(error);
+					var errorArray = [];
+					var errors = error.data.errors;
+					for(key in errors){
+						error = errors[key];
+						$scope.error = key + ' ' + error[0];
+						return;
+					}
 				}
 			);
 		};

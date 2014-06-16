@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       match '/sessions' => 'sessions#destroy', :via => :delete
       # match '/sessions' => 'sessions#options', :via => :options
     end
+    match '/users/current' => 'users#current', :via => :get
 
     resources :users, format: 'json'
     resources :games, format: 'json' do

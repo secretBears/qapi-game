@@ -1,0 +1,17 @@
+
+<h2>Edit User</h2>
+
+<form accept-charset="UTF-8" ng-submit="submitEditUser()" class="edit_user" id="edit_user" method="put" autocomplete="off" ng-show="currentUser.id == user.id">
+  <input placeholder="Email" autocomplete="off" autofocus="autofocus" id="edit_user_email" name="edit_user[email]" type="email" value="" ng-model="user.email" required="required"></input>
+
+  <input placeholder="Password" autocomplete="off" id="edit_user_password" name="edit_user[password]" type="password" ng-model="user.password" val=""></input>
+
+  <input placeholder="Password" autocomplete="off" id="edit_user_confirmPassword" name="edit_user[confirmPassword]" type="password" ng-model="confirmPassword"></input>
+
+  <input class="qapi-button" name="commit" type="submit" value="Update">
+</form>
+
+
+<br>
+<br>
+<button class="qapi-button delete" ng-click="deleteUser()" ng-show="currentUser.id == user.id">Delete</a>

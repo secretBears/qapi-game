@@ -10,15 +10,14 @@ angular.module('qapiApp').factory('Player', ['$http', '$location', '$rootScope',
 		this.id = config.id || null;
 	};
 
+	Player.prototype.setData = function(config){
+		config = config || {};
+		this.email = config.email || this.email;
+		this.id = config.id || this.id;
+	};
+
 	Player.prototype.login = function(email, password){
-		return Restangular.all('sessions').post({user:{email:email, password:password}}).then(
-			function(data){
-				this.email = data.email;
-				this.id = data.id;
-			}.bind(this),
-			function(){
-				console.log('ERROR LOGIN');
-			}.bind(this));
+		return Restangular.all('sessions').post({user:{email:email, password:password}});
 	};
 
 	Player.prototype.isLogedIn = function(){

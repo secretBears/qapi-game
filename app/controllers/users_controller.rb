@@ -32,6 +32,11 @@ class UsersController < ApplicationController
     render :json => {:info => "user destroyed"}, :status => 200
   end
 
+  def current
+    @user = current_user
+    render 'show'
+  end
+
   private
 
   def set_user

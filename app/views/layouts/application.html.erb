@@ -39,13 +39,14 @@
       <div class="clear"></div>
     </div>
     <div class="user-data">
-      <span class="user-img"></span>
-      <span class="name">{{player.email}}</span>
+      <a href="#/users/{{currentUser.id}}" class="user-img"></a>
+      <a href="#/users/{{currentUser.id}}" class="name">{{currentUser.email}}</a>
       <div class="clear"></div>
     </div>
     <nav class="menu-links">
       <a href="#" ng-click="toggleMenu()"><div class="hoverlink"></div>Home</a>
-      <a href="#about" ng-click="toggleMenu()"><div class="hoverlink"></div>About</a>
+      <!-- <a href="#about" ng-click="toggleMenu()"><div class="hoverlink"></div>About</a> -->
+      <a href="#users" ng-click="toggleMenu()"><div class="hoverlink"></div>Users</a>
       <a href="#games" ng-click="toggleMenu()"><div class="hoverlink"></div>Games</a>
       <a href="#login" ng-click="toggleMenu();logout();"><div class="hoverlink"></div>Logout</a>
     </nav>

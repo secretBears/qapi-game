@@ -3,8 +3,8 @@
 <div ng-repeat="question in questions" class="result-{{question.isRight}} row">
 <div class="row-background"></div>
   <div class="row-question">{{question.question}}</div>
-  <div class="row-yanswer">Your Answer: {{question.answer}}</div>
   <div class="row-ranswer">Right Answer: {{question.rightAnswer}}</div>
+  <div class="row-yanswer">Your Answer: {{question.answer}}</div>
   <div ng-repeat="other in question.otherUsersAnswers" class="other-user-answers result-{{other.isRight}}">
   	<span>{{other.user}}</span>
   	<span>{{other.answer}}</span>

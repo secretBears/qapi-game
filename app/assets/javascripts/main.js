@@ -57,6 +57,14 @@ angular
           templateUrl: 'templates/users/index.html',
           controller: 'UserCtrl'
         })
+        .when('/users/:id', {
+          templateUrl: 'templates/users/show.html',
+          controller: 'UserCtrl'
+        })
+        .when('/users/:id/edit', {
+          templateUrl: 'templates/users/edit.html',
+          controller: 'UserCtrl'
+        })
 
         // ############ GAME ############
 
@@ -97,13 +105,20 @@ angular
       RestangularProvider.setDefaultHeaders({'X-CSRF-Token': authToken});
     }
   ])
-  .run(['$rootScope', 'Player', function($rootScope, Player){
+  .run(['$rootScope', 'Player', 'User', function($rootScope, Player, User){
 
     //$rootScope.api = 'http://localhost:3000/api';
     $rootScope.menuhidden = true;
     $rootScope.username = 'Justin Bieber';
     $rootScope.isPlaying = false;
     $rootScope.player = Player;
+
+    var user = new User();
+    user.current().then(
+      function(data){
+        $rootScope.currentUser = data;
+      }
+    );
 
     $rootScope.toggleMenu = function(){
       $rootScope.menuhidden = !$rootScope.menuhidden;

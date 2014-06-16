@@ -1,12 +1,14 @@
 
 <h2>Sign Up</h2>
 
+<p class="error" ng-show="error">{{error}}</p>
+
 <form accept-charset="UTF-8" ng-submit="submitSignUp()" class="new_session" id="new_session" method="post">
-  <input placeholder="Email" autofocus="autofocus" id="user_email" name="user[email]" type="email" value="" ng-model="email">
+  <input placeholder="Email" autofocus="autofocus" id="user_email" name="user[email]" type="email" value="" ng-model="email"  required="required"></input>
 
-  <input placeholder="Password" autocomplete="off" id="user_password" name="user[password]" type="password" ng-model="password"></div>
+  <input placeholder="Password" autocomplete="off" id="user_password" name="user[password]" type="password" ng-model="password" required="required"></input>
 
-  <input placeholder="Password" autocomplete="off" id="user_confirmPassword" name="user[confirmPassword]" type="password" ng-model="confirmPassword"></div>
+  <input placeholder="Password" autocomplete="off" id="user_confirmPassword" name="user[confirmPassword]" type="password" ng-model="confirmPassword" required="required"></input>
 
   <input class="qapi-button" name="commit" type="submit" value="Sign Up">
   <a class="qapi-button" href="#/login">Sign In</a>

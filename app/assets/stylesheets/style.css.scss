@@ -73,6 +73,14 @@ input[type="password"], input[type="text"], input[type="email"]{
   &:active{
     box-shadow: inset 0 0 12px 0px $grey;
   }
+
+  &.delete{
+    background-color: $red;
+
+    &:hover{
+      background-color: $red/1.1;
+    }
+  }
 }
 
 .qapi-section{
@@ -119,6 +127,14 @@ ul.list{
 
 .ui-autocomplete{
   font-size: 14px;
+}
+
+p.error{
+  background-color: $lightred;
+  border: 1px solid $red;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  color: $red;
 }
 
 header{
@@ -400,6 +416,8 @@ header{
       .name{
         float: right;
         line-height: $user-data-height;
+        text-decoration: none;
+        color: $grey;
       }
     }
 
