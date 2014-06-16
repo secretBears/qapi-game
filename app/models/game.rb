@@ -79,5 +79,6 @@ class Game < ActiveRecord::Base
 		num_of_answers = Answer.of_questions_and_users(question_ids, user_ids).count
 
 		finish = num_of_answers >= (questions.count * users.count)
+		self.update(:finish => finish)
 	end
 end
