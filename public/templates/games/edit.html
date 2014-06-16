@@ -10,7 +10,7 @@
 	<h3>Players:</h3>
 	<ul class="list">
 		<li ng-repeat="user in game.users">
-			<div>{{user.email}} <a href="" ng-click="removePlayer();">remove</a></div>
+			<div>{{user.email}} <a ng-show="user.id!=currentUser.id" href="" ng-click="removePlayer();">remove</a></div>
 		</li>
 	</ul>
 <section>

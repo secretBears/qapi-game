@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
     if @question.nil?
       render :json => {:info => "QAPI not available"}, :status => 500
     elsif @question == 'finished'
-      render :json => {:info => "finished"}, :status => 500
+      render :json => {:info => "finished"}, :status => 200
     else
       render 'show'
     end

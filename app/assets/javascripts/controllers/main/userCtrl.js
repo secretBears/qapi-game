@@ -2,6 +2,8 @@
 angular.module('qapiApp').controller('UserCtrl', ['$scope', 'User', '$location', '$routeParams',
 	function($scope, User, $location, $routeParams){
 
+		$scope.Math = window.Math
+
 		var userService = new User();
 
 		userService.all().then(
@@ -18,6 +20,16 @@ angular.module('qapiApp').controller('UserCtrl', ['$scope', 'User', '$location',
 			userService.one(id).then(
 				function(data){
 					$scope.user = data;
+					$scope.statistic = {};
+					rightResults = [0,0,0,0,0,0,0,0,0,0];
+					highestCount = 0;
+					for(var i=0; i<data.games.length; i++){
+						rightResults[data.games[i].result.right]++;
+						if(rightResults[data.games[i].result.right] > highestCount)
+							highestCount = rightResults[data.games[i].result.right];
+					}
+					$scope.statistic.rightResults = rightResults;
+					$scope.statistic.highestCount = highestCount;
 				}
 			);
 

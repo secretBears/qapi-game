@@ -1,9 +1,54 @@
+require 'helper/game_result'
+
 class Game < ActiveRecord::Base
 	has_and_belongs_to_many :users
 	has_many :questions
 
 	def all_users
 		User.includes(:games).where('games.id' => id)
+	end
+
+	def winners
+		users = all_users
+		if users.count == 1 || finish == false
+			return Array.new
+		end
+
+		game_result = GameResult.new
+
+		score = Hash.new
+		users.each do |user|
+			game_result.add(user, result(user)[:right])
+		end
+
+		return game_result.winner
+	end
+
+	def result_as_string(user)
+		if(finish==false)
+			return nil
+		end
+		all_winner = winners
+		if(all_winner.count == 1 && all_winner[0].id == user.id)
+			return "win"
+		end
+		if(all_winner.count > 1 && all_winner.detect{|w| w.id == user.id})
+			return "drawn"
+		end
+		return "lose"
+	end
+
+	def result(user)
+		right_questions_count = 0
+		wrong_questions_count = 0
+		questions.each do |question|
+			if question.is_right?(user)
+				right_questions_count += 1
+			else
+				wrong_questions_count +=1
+			end
+		end
+		{:right => right_questions_count, :wrong => wrong_questions_count}
 	end
 
 	def update_player(params)

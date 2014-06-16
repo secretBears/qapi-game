@@ -1,4 +1,21 @@
 
 <h2>{{user.email}}</h2>
 
+<div>
+	<label>Games Player:</label> <span>{{user.gamesPlayed}}</span>
+<div>
+<div>
+	<label>Games Won:</label> <span>{{user.gamesWon}}</span>
+<div>
+<div>
+	<label>Give Right Answer:</label> <span ng-show="user.sum">{{Math.floor(user.sum.right/(user.sum.right+user.sum.wrong)*100)}}%</span>
+</div>
+
+<!-- <section class="qapi-section">
+	<h3>Statistic</h3>
+	<div class="diagram">
+		<div ng-repeat="rightAnswer in statistic.rightResults track by $index" class="bar" ng-style="{width: 100/statistic.rightResults.length+'%', height: rightAnswer*100/statistic.highestCount+'%'}"></div>
+	</div>
+</section> -->
+
 <a ng-show="currentUser.id == user.id" class="qapi-button" href="#/users/{{user.id}}/edit">Edit</a>

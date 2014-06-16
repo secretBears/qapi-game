@@ -137,6 +137,18 @@ p.error{
   color: $red;
 }
 
+.diagram{
+  position: relative;
+  width: 100%;
+  padding: 1em 0;
+  height: 8em;
+
+  .bar{
+    display: inline-block;
+    background-color: $blue;
+  }
+}
+
 header{
   position: fixed;
   top: 0;

@@ -7,7 +7,8 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 		$scope.game.rightQuestions = $scope.game.rightQuestions || 0;*/
 		$scope.numberofquestions = 10;
 		$scope.questions = [];
-		$scope.finished = false;
+		$scope.showFinish = false;
+		$scope.showPlay = false;
 		$scope.play = {};
 		$scope.selectedAnswer = -1;
 		$scope.indexOfRightAnswer = -1;
@@ -111,20 +112,21 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 				game.getQuestion($scope.game.id, nextQuestion, pos.coords).then(
 					// SUCCESS
 					function(data){
-						$scope.questions.push(data);
-						$scope.play.question = data;
-					},
-					// ERROR
-					function(data){
-						if(data.data.info == 'finished'){
+						if(data.info){
 							game.allQuestions($routeParams.id).then(function(data){
 								$scope.questions = data;
 							});
-							$scope.finished = true;
+							$scope.showFinish = true;
 						}
 						else{
-							$scope.errorMessage = data.data.info;
+							$scope.questions.push(data);
+							$scope.play.question = data;
+							$scope.showPlay = true;
 						}
+					},
+					// ERROR
+					function(data){
+						$scope.errorMessage = data.data.info;
 					}
 				);
 			},

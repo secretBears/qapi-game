@@ -1,3 +1,6 @@
+
+<h2 ng-show"game.yourResult!=null">game.yourResult</h2>
+
 <h3 class="result">Result: {{numberOfRightQuestions()}} / {{questions.length}} ({{100 * numberOfRightQuestions() / questions.length}}%)</h3>
 
 <div ng-repeat="question in questions" class="result-{{question.isRight}} row">
