@@ -1,13 +1,14 @@
 
-angular.module('qapiApp').controller('AuthCtrl', ['$scope', 'Player', '$location',
-	function($scope, Player, $location){
+angular.module('qapiApp').controller('AuthCtrl', ['$scope', 'Player', '$location', '$rootScope',
+	function($scope, Player, $location, $rootScope){
 		$scope.player = Player;
 
 		$scope.submitLogin = function(){
 			$scope.player.login($scope.email, $scope.password).then(
 				function(data){
 					Player.setData(data);
-					$scope.$parent.currentUser = data;
+					$rootScope.currentUser = data;
+					$rootScope.userIsLoggedIn = true;
 					$location.path('/games');
 				},
 				function(data){
@@ -20,7 +21,8 @@ angular.module('qapiApp').controller('AuthCtrl', ['$scope', 'Player', '$location
 			$scope.player.signUp($scope.email, $scope.password, $scope.confirmPassword).then(
 				function(data){
 					Player.setData(data);
-					$scope.$parent.currentUser = data;
+					$rootScope.currentUser = data;
+					$rootScope.userIsLoggedIn = true;
 					$location.path('/');
 				},
 				function(error){

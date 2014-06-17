@@ -112,6 +112,7 @@ angular
     $rootScope.username = 'Justin Bieber';
     $rootScope.isPlaying = false;
     $rootScope.player = Player;
+    $rootScope.userIsLoggedIn = false;
 
     var user = new User();
     user.current().then(
