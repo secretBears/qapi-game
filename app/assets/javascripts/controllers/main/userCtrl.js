@@ -2,6 +2,7 @@
 angular.module('qapiApp').controller('UserCtrl', ['$scope', 'User', '$location', '$routeParams',
 	function($scope, User, $location, $routeParams){
 
+		$scope.isAllowedToManage = false;
 		$scope.Math = window.Math
 
 		var userService = new User();
@@ -35,6 +36,7 @@ angular.module('qapiApp').controller('UserCtrl', ['$scope', 'User', '$location',
 
 			var allowFunctions = function(){
 				if($scope.currentUser.id == id){
+					$scope.isAllowedToManage = true;
 
 					$scope.submitEditUser = function(){
 						userService.update($scope.user);

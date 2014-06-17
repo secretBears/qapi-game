@@ -2,13 +2,13 @@
 <h2>{{user.email}}</h2>
 
 <div>
-	<label>Games Player:</label> <span>{{user.gamesPlayed}}</span>
+	<label>Games Played:</label> <span>{{user.gamesPlayed}}</span>
 <div>
 <div>
 	<label>Games Won:</label> <span>{{user.gamesWon}}</span>
 <div>
 <div>
-	<label>Give Right Answer:</label> <span ng-show="user.sum">{{Math.floor(user.sum.right/(user.sum.right+user.sum.wrong)*100)}}%</span>
+	<label>Give Right Answer:</label> <span ng-show="user.sum && (user.sum.right+user.sum.wrong)>0">{{Math.floor(user.sum.right/(user.sum.right+user.sum.wrong)*100)}}%</span>
 </div>
 
 <!-- <section class="qapi-section">
@@ -18,4 +18,4 @@
 	</div>
 </section> -->
 
-<a ng-show="currentUser.id == user.id" class="qapi-button" href="#/users/{{user.id}}/edit">Edit</a>
+<a ng-show="isAllowedToManage" class="qapi-button" href="#/users/{{user.id}}/edit">Edit</a>

@@ -117,11 +117,13 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 								$scope.questions = data;
 							});
 							$scope.showFinish = true;
+							$scope.showPlay = false;
 						}
 						else{
 							$scope.questions.push(data);
 							$scope.play.question = data;
 							$scope.showPlay = true;
+							$scope.showFinish = false;
 						}
 					},
 					// ERROR
