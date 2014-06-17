@@ -38,7 +38,17 @@ angular.module('qapiApp').factory('Game', ['Restangular',
 
     Game.prototype.setAnswer = function(gameid, questionid, answer){
         return Restangular.one('games', gameid).one('questions', questionid).all('answers').post({answer: {answer: answer }});
-    }
+    };
+
+    Game.prototype.getRunningGames = function(games){
+        var count = 0;
+        for(var i=0; i<games.length; i++){
+            if(games[i].started && !games[i].finish){
+                count++;
+            }
+        }
+        return count;
+    };
 
     return Game;
 }]);

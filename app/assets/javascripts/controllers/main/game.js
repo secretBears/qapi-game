@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParams', '$window', '$timeout', 'Player',
-	function ($scope, Game, $routeParams, $window, $timeout, Player) {
+angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParams', '$window', '$timeout', 'Player', '$rootScope',
+	function ($scope, Game, $routeParams, $window, $timeout, Player, $rootScope) {
 		/*$scope.game = Game;
 		$scope.game.numberofquestions = $scope.game.numberofquestions || 0;
 		$scope.game.rightQuestions = $scope.game.rightQuestions || 0;*/
@@ -36,6 +36,7 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 		game.all().then(
 			function(data){
 				$scope.games = data;
+				$rootScope.displayRunningGames(game.getRunningGames(data));
 			},
 			function(){
 				$window.location.href = "/#/login";

@@ -47,7 +47,7 @@
       <a href="#" ng-click="toggleMenu()"><div class="hoverlink"></div>Home</a>
       <!-- <a href="#about" ng-click="toggleMenu()"><div class="hoverlink"></div>About</a> -->
       <a href="#users" ng-click="toggleMenu()"><div class="hoverlink"></div>Users</a>
-      <a href="#games" ng-click="toggleMenu()"><div class="hoverlink"></div>Games</a>
+      <a href="#games" ng-click="toggleMenu()"><div class="hoverlink"></div>Games <span ng-show="numOfRunningGames>0">{{numOfRunningGames}}</span></a>
       <a href="#login" ng-click="toggleMenu();logout();"><div class="hoverlink"></div>Logout</a>
     </nav>
   </div>

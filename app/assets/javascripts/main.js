@@ -113,6 +113,7 @@ angular
     $rootScope.isPlaying = false;
     $rootScope.player = Player;
     $rootScope.userIsLoggedIn = false;
+    $rootScope.numOfRunningGames = 0;
 
     var user = new User();
     user.current().then(
@@ -123,6 +124,10 @@ angular
 
     $rootScope.toggleMenu = function(){
       $rootScope.menuhidden = !$rootScope.menuhidden;
+    };
+
+    $rootScope.displayRunningGames = function(num){
+      $rootScope.numOfRunningGames = num;
     };
 
     $rootScope.logout = $rootScope.player.logout.bind(Player);

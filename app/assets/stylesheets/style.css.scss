@@ -444,6 +444,16 @@ header{
         display: none;
       }
 
+      span{
+        float: right;
+        background-color: $black;
+        display: block;
+        width: 20px;
+        border-radius: 20px;
+        height: 20px;
+        text-align: center;
+      }
+
       .hoverlink{
         display: none;
         width: 5px;
