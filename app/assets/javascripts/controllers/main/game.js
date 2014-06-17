@@ -162,19 +162,33 @@ angular.module('qapiApp').controller('GameCtrl', ['$scope', 'Game', '$routeParam
 		};
 
 		if($routeParams.id){
+			var countDone = 0;
+			var functinToExecute = 2;
+
+			var allDone = function(){
+				countDone ++;
+				if(countDone == functinToExecute){
+					if($window.location.href.match("/play")){
+						$scope.getQuestion();
+					}
+				}
+			}
+
 			var gameReq = game.one($routeParams.id).then(function(data){
 				$scope.game = data;
+				allDone();
 			});
 
 			var questionReq = game.allQuestions($routeParams.id).then(function(data){
 				$scope.questions = data;
+				allDone();
 			});
 
-			Promise.all([gameReq, questionReq]).then(function(){
+			/*Promise.all([gameReq, questionReq]).then(function(){
 				if($window.location.href.match("/play")){
 					$scope.getQuestion();
 				}
-			});
+			});*/
 
 		}
 	}
